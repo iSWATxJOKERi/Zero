@@ -11,6 +11,17 @@ export const addItem = (item, user_id) => {
     })
 }
 
+export const removeItem = (item, user_id) => {
+    return axios({
+        method: 'patch',
+        url: '/api/cart/remove',
+        data: item,
+        params: {
+            id: user_id
+        }
+    })
+}
+
 export const createCart = (user_id) => {
     return axios({
         method: 'post',

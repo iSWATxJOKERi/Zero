@@ -21,6 +21,12 @@ export const addItem = (item, user_id) => dispatch => {
     })
 }
 
+export const removeItem = (item, user_id) => dispatch => {
+    return CartApiUtil.removeItem(item, user_id).then(cart => {
+        dispatch(receiveCart(cart.data))
+    })
+}
+
 export const createCart = user_id => dispatch => {
     return CartApiUtil.createCart(user_id).then(cart => {
         dispatch(receiveCart(cart.data))

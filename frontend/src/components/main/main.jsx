@@ -63,7 +63,7 @@ class Main extends React.Component {
         return (
             <section className="splash">
                 <h1 id="title">ZERO GROCERY</h1>
-                { this.state.loggedin ? <div>{ logout } <Cart items={ a2 } cart={ this.props.cart }/> </div> : null }
+                { this.state.loggedin ? <div>{ logout } <Cart items={ a2 } allProps={ this.props } cart={ this.props.cart }/> </div> : null }
                 <div id="bottom">
                     <div className="itemlist">{ arr.length === 0 ? <span>No items in the store.</span> : arr }</div>
                     { show }

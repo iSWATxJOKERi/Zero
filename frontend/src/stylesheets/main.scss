@@ -89,7 +89,7 @@ body {
     width: 300px;
 }
 
-.show:hover, .item:hover, #logout:hover, .cart-btn {
+.show:hover, .item:hover, #logout:hover, .cart-btn, .item2:hover {
     cursor: pointer;
 }
 
@@ -181,11 +181,12 @@ body {
     height: 300px;
     background: white;
     width: 300px;
+    overflow: auto;
 }
 
 .cart-container {
     display: flex;
     flex-direction: row-reverse;
-    padding-right: 300px;
+    padding-right: 100px;
     font-weight: bolder;
 }

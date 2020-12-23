@@ -23,19 +23,19 @@ class Cart extends React.Component {
         for(let j = 0; j < this.props.items.length; j++) {
             obj[this.props.items[j]._id] = this.props.items[j]
         }
-        console.log(obj);
-        console.log(arr);
+        // console.log(obj);
+        // console.log(arr);
         if(this.props.cart.items) {
             for(let i = 0; i < this.props.cart.items.length; i++) {
                 if(obj[this.props.cart.items[i]]) {
-                    arr.push(<CartItem key={ i } item={ obj[this.props.cart.items[i]] } />)
+                    arr.push(<CartItem key={ i } allProps={ this.props.allProps } item={ obj[this.props.cart.items[i]] } />)
                 }
             }
         }
         return (
             <section className="cart-container">
                 <span className="cart-btn" onClick={ this.toggleCart }>YOUR CART</span>
-                <div className={ this.state.cart ? "cart" : "hide" } onClick={ this.toggleCart }>
+                <div className={ this.state.cart ? "cart" : "hide" } >
                     { arr.length > 0 ? arr : "EMPTY. CLICK ITEM TO ADD TO CART." }
                 </div>
             </section>
