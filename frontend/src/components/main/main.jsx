@@ -18,11 +18,13 @@ class Main extends React.Component {
 
     componentDidMount() {
         this.props.getItems().then(() => {
-            this.props.getCart(this.props.currentUser.id).then(() => {
-                this.setState({
-                    fetchedCart: true
+            if(this.props.currentUser) {
+                this.props.getCart(this.props.currentUser.id).then(() => {
+                    this.setState({
+                        fetchedCart: true
+                    })
                 })
-            })
+            }
         });
     }
 

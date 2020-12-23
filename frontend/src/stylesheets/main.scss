@@ -173,12 +173,23 @@ body {
     position: relative;
 }
 
-.cart {
+.sumbar {
     position: absolute;
     display: flex;
     flex-direction: column;
     top: 350px;
-    height: 300px;
+    height: 360px;
+    background: white;
+}
+
+#total {
+    text-align: center;
+}
+
+.cart {
+    display: flex;
+    flex-direction: column;
+    height: 320px;
     background: white;
     width: 300px;
     overflow: auto;
@@ -189,4 +200,10 @@ body {
     flex-direction: row-reverse;
     padding-right: 100px;
     font-weight: bolder;
+}
+
+.errors {
+    color: red;
+    list-style: none;
+    text-align: center;
 }

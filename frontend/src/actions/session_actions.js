@@ -28,8 +28,8 @@ export const signup = user => dispatch => {
         // debugger
         dispatch(receiveCurrentUser(decoded))
         return decoded
-    }, errors => {
-        dispatch(receiveSessionErrors(errors))
+    }).catch(errors => {
+        dispatch(receiveSessionErrors(errors.response.data))
     })
 };
 

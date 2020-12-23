@@ -7,9 +7,13 @@ export default class Item extends React.Component {
     }
 
     addToCart() {
-        this.props.allProps.addItemToCart(this.props.item, this.props.allProps.currentUser.id).then(() => {
-            this.props.allProps.getCart(this.props.allProps.currentUser.id)
-        })
+        if(this.props.allProps.currentUser) {
+            this.props.allProps.addItemToCart(this.props.item, this.props.allProps.currentUser.id).then(() => {
+                this.props.allProps.getCart(this.props.allProps.currentUser.id)
+            })
+        } else {
+            alert("Please create account or sign-in to add items to cart :)");
+        }
     }
 
     render() {

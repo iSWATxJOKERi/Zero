@@ -9,9 +9,13 @@ export default class CartItem extends React.Component {
 
     removeFromCart() {
         // console.log(this.props)
-        this.props.allProps.removeItemFromCart(this.props.item, this.props.allProps.currentUser.id).then(() => {
-            this.props.allProps.getCart(this.props.allProps.currentUser.id)
-        })
+        if(this.props.allProps.currentUser) {
+            this.props.allProps.removeItemFromCart(this.props.item, this.props.allProps.currentUser.id).then(() => {
+                this.props.allProps.getCart(this.props.allProps.currentUser.id)
+            })
+        } else {
+            alert("Please create account or sign-in to add items to cart :)");
+        }
     }
 
     render() {

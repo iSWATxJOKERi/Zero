@@ -8,7 +8,8 @@ class SessionForm extends React.Component {
             handle: "",
             password: "",
             password2: "",
-            loggedin: this.props.currentUser
+            loggedin: this.props.currentUser,
+            errors: []
         }
         this.toggleForm = this.toggleForm.bind(this);
         this.handleInput = this.handleInput.bind(this);
@@ -51,13 +52,25 @@ class SessionForm extends React.Component {
             this.props.processLogin(user).then(u => {
                 // console.log(u);
                 // let cu = jwt_decode(u.token)
-                this.props.getCart(u.id)
+                if(u) {
+                    this.props.getCart(u.id)
+                } else {
+                    this.setState({
+                        errors: this.props.errors.session
+                    })
+                }
             })
         } else {
             this.props.processSignup(user).then(u => {
                 // console.log(u);
                 // let cu = jwt_decode(u.token)
-                this.props.newCart(u.id)
+                if(u) {
+                    this.props.newCart(u.id)
+                } else {
+                    this.setState({
+                        errors: this.props.errors.session
+                    })
+                }
             })
         }
 
@@ -65,6 +78,10 @@ class SessionForm extends React.Component {
 
     render() {
         // console.log(this.state);
+        let arr = [];
+        for(let i = 0; i < this.state.errors.length; i++) {
+            arr.push(<li className="errors" key={ i }>{ this.state.errors[i] }</li>)
+        }
         return (
             <section className="session-container">
                 <section className={ this.state.login ? "hide": "signup-container"}>
@@ -88,6 +105,7 @@ class SessionForm extends React.Component {
                         <button className="create-session">Sign In</button>
                     </form>
                 </section>
+                { arr }
             </section>
         )
     }
