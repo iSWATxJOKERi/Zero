@@ -5,7 +5,7 @@ module.exports = function validateItem(data) {
     let errors = {};
 
     data.name = validText(data.name) ? data.name : '';
-    data.price = data.price.constructor === Number ? data.price : '';
+    data.price = typeof Number(data.price) === 'number' ? data.price : '';
 
     if (!Validator.isLength(data.name, { min: 1, max: 16 })) {
         errors.name = 'Name of item must be between 1 and 16 characters';
@@ -15,7 +15,7 @@ module.exports = function validateItem(data) {
         errors.name = 'Name field is required';
     }
 
-    if (Validator.isEmpty(data.price)) {
+    if (data.price <= 0) {
         errors.price = 'Price field is required';
     }
 

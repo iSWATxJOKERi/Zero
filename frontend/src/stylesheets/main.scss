@@ -1,0 +1,141 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #290050;
+}
+
+.splash {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.session-container {
+    margin: auto;
+}
+
+.hide {
+    display: none;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    width: 270px;
+    padding: 15px;
+    border: 1px solid silver;
+    border-radius: 7px;
+    align-items: center;
+    span {
+        color: silver;
+    }
+    span:hover, button:hover {
+        cursor: pointer;
+    }
+}
+
+.username-login, .password-login {
+    padding-left: 16px;
+    height: 40px;
+    width: 250px;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin: 10px 0;
+}
+
+.create-session {
+    padding: 7px 10px;
+    background: silver;
+    border-radius: 7px;
+    border: none;
+}
+
+.create-session2 {
+    padding: 7px 10px;
+    background: silver;
+    border-radius: 7px;
+    border: none;
+    margin-top: 17px;
+    margin-bottom: 5px;
+}
+
+.show {
+    padding: 7px 10px;
+    background: silver;
+    border-radius: 7px;
+    border: none;
+    margin-top: 17px;
+    margin-bottom: 5px;
+}
+
+.show:hover {
+    cursor: pointer;
+}
+
+.signup-form {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 670px;
+    padding: 15px;
+    border: 1px solid silver;
+    border-radius: 7px;
+    align-items: center;
+    span {
+        color: silver;
+        font-size: small;
+    }
+    span:hover, button:hover {
+        cursor: pointer;
+    }
+}
+
+.password-input, .password-match {
+    padding-left: 16px;
+    height: 40px;
+    width: 200px;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin: 10px 5px;
+}
+
+.username-input {
+    padding-left: 16px;
+    height: 40px;
+    width: 200px;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin: 10px 0;
+}
+
+.passbox {
+    display: flex;
+    flex-direction: row;
+}
+
+.equal {
+    color: green;
+}
+
+.unequal {
+    color: red;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border: 1px solid silver;
+    background: brown;
+    margin: 5px;
+}
+
+.itemlist {
+    display: flex;
+    flex-direction: row;
+}
