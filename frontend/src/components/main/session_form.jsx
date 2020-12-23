@@ -5,13 +5,22 @@ class SessionForm extends React.Component {
         super(props);
         this.state = {
             login: false,
-            username: "",
+            handle: "",
             password: "",
-            password2: ""
+            password2: "",
+            loggedin: this.props.currentUser
         }
         this.toggleForm = this.toggleForm.bind(this);
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.currentUser !== prevProps.currentUser) {
+            this.setState({
+                loggedin: this.props.currentUser
+            })
+        }
     }
 
     toggleForm() {
@@ -31,31 +40,36 @@ class SessionForm extends React.Component {
 
     handleSubmit(e) {
         let form = this.state.login ? {
-            username: this.state.username, password: this.state.password
+            handle: this.state.handle, password: this.state.password
         } : {
-            username: this.state.username, password: this.state.password
+            handle: this.state.handle, password: this.state.password, password2: this.state.password2
         }
         e.preventDefault();
         const user = Object.assign({}, form);
 
         if(this.state.login) {
-            this.props.processLogin(user).then(user => {
-                this.props.getCart(user._id)
+            this.props.processLogin(user).then(u => {
+                // console.log(u);
+                // let cu = jwt_decode(u.token)
+                this.props.getCart(u.id)
             })
         } else {
-            this.props.processSignup(user).then(user => {
-                this.props.newCart(user._id)
+            this.props.processSignup(user).then(u => {
+                // console.log(u);
+                // let cu = jwt_decode(u.token)
+                this.props.newCart(u.id)
             })
         }
 
     }
 
     render() {
+        // console.log(this.state);
         return (
             <section className="session-container">
                 <section className={ this.state.login ? "hide": "signup-container"}>
                     <form className="signup-form" onSubmit={ this.handleSubmit }>
-                        <input className="username-input" type="text" placeholder="Username" onChange={ this.handleInput('username') }></input>
+                        <input className="username-input" type="text" placeholder="Handle" onChange={ this.handleInput('handle') }></input>
                         <div className="passbox">
                             <input className="password-input" type="password" placeholder="Password" onChange={ this.handleInput('password') }></input>
                             <input className="password-match" type="password" placeholder="Confirm password" onChange={ this.handleInput('password2') }></input>
@@ -66,8 +80,8 @@ class SessionForm extends React.Component {
                 </section>
                 <section className={ this.state.login ? "login-container" : "hide" }>
                     <form className="login-form" onSubmit={ this.handleSubmit }>
-                        <input className="username-login" type="text" placeholder="Username or Email Address"></input>
-                        <input className="password-login" type="password" placeholder="Password"></input>
+                        <input className="username-login" type="text" placeholder="Handle" onChange={ this.handleInput('handle') }></input>
+                        <input className="password-login" type="password" placeholder="Password" onChange={ this.handleInput('password') }></input>
                         <div className="forgot-pass-container">
                             <span onClick={ this.toggleForm }>Don't have an account? Create one here.</span>
                         </div>

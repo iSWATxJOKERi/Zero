@@ -19,26 +19,34 @@ export const receiveSessionErrors = errors => ({
     errors
 });
 
-export const signup = user => dispatch => (
-    APIUtil.signup(user).then(user => (
-        dispatch(receiveCurrentUser(user))
-    ), errors => (
-        dispatch(receiveSessionErrors(errors.response.data))
-    ))
-);
-
-export const login = user => dispatch => (
-    APIUtil.login(user).then(res => {
+export const signup = user => dispatch => {
+    return APIUtil.signup(user).then(res => {
         const { token } = res.data;
         localStorage.setItem('jwtToken', token);
         APIUtil.setAuthToken(token);
         const decoded = jwt_decode(token);
+        // debugger
         dispatch(receiveCurrentUser(decoded))
+        return decoded
+    }, errors => {
+        dispatch(receiveSessionErrors(errors))
+    })
+};
+
+export const login = user => dispatch => {
+    return APIUtil.login(user).then(res => {
+        const { token } = res.data;
+        localStorage.setItem('jwtToken', token);
+        APIUtil.setAuthToken(token);
+        const decoded = jwt_decode(token);
+        // debugger
+        dispatch(receiveCurrentUser(decoded))
+        return decoded
     })
     .catch(errors => {
-        dispatch(receiveSessionErrors(errors.response.data))
+        dispatch(receiveSessionErrors(errors))
     })
-)
+}
 
 export const logout = () => dispatch => {
     localStorage.removeItem('jwtToken');

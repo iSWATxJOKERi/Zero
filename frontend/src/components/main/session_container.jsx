@@ -5,7 +5,8 @@ import SessionForm from './session_form';
 
 const mapStateToProps = state => {
     return {
-        errors: state.session.errors
+        errors: state.session.errors,
+        currentUser: state.session.user
     }
 }
 

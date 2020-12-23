@@ -4,7 +4,9 @@ import { Route } from 'react-router-dom';
 import MainContainer from './main/main_container';
 
 const App = () => (
-    <Route exact path="/" component={ MainContainer }/>
+    <section className="application">
+        <Route exact path="/" component={ MainContainer }/>
+    </section>
 );
 
 export default App;

@@ -7,8 +7,8 @@ export default class Item extends React.Component {
     }
 
     addToCart() {
-        this.props.allProps.addItemToCart().then(() => {
-            this.props.allProps.fetchCart(this.props.currentUser._id)
+        this.props.allProps.addItemToCart(this.props.item, this.props.allProps.currentUser.id).then(() => {
+            this.props.allProps.fetchCart(this.props.allProps.currentUser.id)
         })
     }
 

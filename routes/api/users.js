@@ -35,7 +35,7 @@ router.post("/register", (req, res) => {
                     newUser.password = hash;
                     newUser.save().then(user => {
                         const payload = { id: user.id, handle: user.handle };
-                        jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => { res.json({ success: true, token: 'Bearer ' + token})});
+                        jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => { res.json({ success: true, token: 'Bearer ' + token })});
                     }).catch(err => console.log(err));
                 })
             })
@@ -59,14 +59,12 @@ router.post("/login", (req, res) => {
 
         bcrypt.compare(password, user.password).then(isMatch => {
             if(isMatch) {
-                // const payload = { id: user.id, handle: user.handle };
+                const payload = { id: user.id, handle: user.handle };
 
-                // jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => { res.json({ success: true, token: 'Bearer ' + token})})
-                res.json({ msg: 'Success'});
+                jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => { res.json({ success: true, token: 'Bearer ' + token })})
             } else {
                 errors.password = 'Incorrect password';
                 return res.status(400).json(errors);
-                // return res.status(400).json({ credentials: 'Incorrect Password or Handle'});
             }
         })
     })

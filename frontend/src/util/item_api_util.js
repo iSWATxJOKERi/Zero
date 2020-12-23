@@ -5,5 +5,5 @@ export const fetchItems = () => {
 }
 
 export const createItem = item => {
-    return axios.post('/api/item/new', item);
+    return axios.post('/api/items/new', item);
 }

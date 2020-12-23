@@ -8,10 +8,10 @@ import { logout } from './actions/session_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
     let store;
-  
-    if (localStorage.jwtToken) {
+    
+    if (localStorage.jwtToken && localStorage.jwtToken !== 'undefined') {
+      
       setAuthToken(localStorage.jwtToken);
-
       const decodedUser = jwt_decode(localStorage.jwtToken);
 
       const preloadedState = { session: { isAuthenticated: true, user: decodedUser } };
@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
       if (decodedUser.exp < currentTime) {
         store.dispatch(logout());
-        window.location.href = '/login';
       }
     } else {
       store = configureStore({});
