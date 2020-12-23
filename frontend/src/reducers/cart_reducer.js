@@ -1,6 +1,6 @@
 import { RECEIVE_CART } from '../actions/cart_actions';
 
-const cartReducer = (state = null, action) => {
+const cartReducer = (state = [], action) => {
     switch(action.type) {
         case RECEIVE_CART:
             return action.cart

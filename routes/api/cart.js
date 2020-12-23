@@ -5,8 +5,10 @@ const Item = require("../../models/Item");
 const User = require("../../models/User");
 
 router.get("/get", (req, res) => {
-    Cart.findOne({ user: req.params.id }).then(cart => {
-        return res.json(cart);
+    User.findOne({ id: req.params.id }).then(cu => {
+        Cart.findOne({ user: cu._id }).then(cart => {
+            return res.json(cart);
+        })
     })
 })
 
@@ -24,14 +26,19 @@ router.post("/create", (req, res) => {
 })
 
 router.patch("/add", (req, res) => {
-    console.log("in")
-    Cart.findOne({ user: req.params.id }).then(cart => {
-        if(cart) {
-            let item = Item.findById({ id: req.body._id });
-            console.log(item);
-            cart.items.push(item._id);
-            return res.json(cart);
-        }
+    // debugger
+    User.findOne({ id: req.params.id }).then(cu => {
+        // console.log(cu);
+        // debugger
+        Cart.findOne({ user: cu._id }).then(cart => {
+            // debugger
+            if(cart) {
+                cart.items.push(req.body);
+                cart.save();
+                // console.log(cart)
+                return res.json(cart[0]);
+            }
+        })
     })
 })
 

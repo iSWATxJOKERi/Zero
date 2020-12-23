@@ -2,20 +2,28 @@ import React from 'react';
 import SessionContainer from './session_container';
 import '../../stylesheets/main.scss';
 import Item from './item';
+import Cart from './cart';
 
 class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             signin: false,
-            loggedin: this.props.currentUser
+            loggedin: this.props.currentUser,
+            fetchedCart: false
         }
         this.toggleShow = this.toggleShow.bind(this);
         this.signout = this.signout.bind(this);
     }
 
     componentDidMount() {
-        this.props.getItems();
+        this.props.getItems().then(() => {
+            this.props.getCart(this.props.currentUser.id).then(() => {
+                this.setState({
+                    fetchedCart: true
+                })
+            })
+        });
     }
 
     componentDidUpdate(prevProps) {
@@ -39,11 +47,13 @@ class Main extends React.Component {
 
     render() {
         let arr = [];
+        let a2 = [];
         if(this.props.items) {
             let pieces = Object.keys(this.props.items);
             for(let i = 0; i < pieces.length; i++) {
                 for(let j = 0; j < this.props.items[pieces[i]].length; j++) {
                     arr.push(<Item key={ this.props.items[pieces[i]][j]._id } allProps={ this.props } item={ this.props.items[pieces[i]][j] } />)
+                    a2.push(this.props.items[pieces[i]][j]);
                 }
             }
         }
@@ -53,7 +63,7 @@ class Main extends React.Component {
         return (
             <section className="splash">
                 <h1 id="title">ZERO GROCERY</h1>
-                { this.state.loggedin ? logout : null }
+                { this.state.loggedin ? <div>{ logout } <Cart items={ a2 } cart={ this.props.cart }/> </div> : null }
                 <div id="bottom">
                     <div className="itemlist">{ arr.length === 0 ? <span>No items in the store.</span> : arr }</div>
                     { show }

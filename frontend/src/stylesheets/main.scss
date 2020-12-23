@@ -89,7 +89,7 @@ body {
     width: 300px;
 }
 
-.show:hover, .item:hover, #logout:hover {
+.show:hover, .item:hover, #logout:hover, .cart-btn {
     cursor: pointer;
 }
 
@@ -154,7 +154,38 @@ body {
     height: 40px;
 }
 
+.item2 {
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    border: 1px solid silver;
+    background: brown;
+    margin: 2px;
+    height: 50px;
+}
+
 .itemlist {
     display: flex;
     flex-direction: row;
+}
+
+.cart-btn {
+    position: relative;
+}
+
+.cart {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 350px;
+    height: 300px;
+    background: white;
+    width: 300px;
+}
+
+.cart-container {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 300px;
+    font-weight: bolder;
 }
