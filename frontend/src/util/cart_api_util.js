@@ -22,7 +22,7 @@ export const removeItem = (item, user_id) => {
     })
 }
 
-export const createCart = (user_id) => {
+export const createCart = user_id => {
     return axios({
         method: 'post',
         url: '/api/cart/create',

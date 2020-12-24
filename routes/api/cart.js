@@ -5,7 +5,8 @@ const Item = require("../../models/Item");
 const User = require("../../models/User");
 
 router.get("/get", (req, res) => {
-    User.findOne({ id: req.params.id }).then(cu => {
+    User.findOne({ _id: req.query.id }).then(cu => {
+        // console.log(cu)
         Cart.findOne({ user: cu._id }).then(cart => {
             return res.json(cart);
         })
@@ -13,13 +14,15 @@ router.get("/get", (req, res) => {
 })
 
 router.post("/create", (req, res) => {
-    User.findOne({ id: req.params.id }).then(cu => {
+    User.findOne({ _id: req.query.id }).then(cu => {
+        // console.log(cu);
         const newCart = new Cart({
             user: cu._id,
             items: []
         })
         newCart.save().then(cart => {
             cu.cart = cart._id;
+            cu.save();
             return res.json(cart);
         });
     })
@@ -27,7 +30,7 @@ router.post("/create", (req, res) => {
 
 router.patch("/add", (req, res) => {
     // debugger
-    User.findOne({ id: req.params.id }).then(cu => {
+    User.findOne({ _id: req.query.id }).then(cu => {
         // console.log(cu);
         // debugger
         Cart.findOne({ user: cu._id }).then(cart => {
@@ -44,7 +47,7 @@ router.patch("/add", (req, res) => {
 
 router.patch("/remove", (req, res) => {
     // debugger
-    User.findOne({ id: req.params.id }).then(cu => {
+    User.findOne({ _id: req.query.id }).then(cu => {
         // console.log(cu);
         // debugger
         Cart.findOne({ user: cu._id }).then(cart => {
