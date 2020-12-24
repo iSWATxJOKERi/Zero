@@ -26,8 +26,17 @@ class SessionForm extends React.Component {
 
     toggleForm() {
         let state = this.state.login;
+        document.getElementsByClassName("password-login")[0].value = "";
+        document.getElementsByClassName("password-input")[0].value = "";
+        document.getElementsByClassName("password-match")[0].value = "";
+        document.getElementsByClassName("username-input")[0].value = "";
+        document.getElementsByClassName("username-login")[0].value = "";
         this.setState({
-            login: !state
+            login: !state,
+            handle: "",
+            password: "",
+            password2: "",
+            errors: []
         })
     }
 
