@@ -44,7 +44,7 @@ export const login = user => dispatch => {
         return decoded
     })
     .catch(errors => {
-        dispatch(receiveSessionErrors(errors))
+        dispatch(receiveSessionErrors(errors.response.data))
     })
 }
 
