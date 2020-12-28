@@ -1,5 +1,5 @@
 # Zero
-# Please use nvm to change or install node 10.17.0
+# Please use nvm to change or install node 10.17.0 to run this project:
 ## inside of the root directory run:
 * npm install
 
